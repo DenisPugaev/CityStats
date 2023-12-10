@@ -1,20 +1,20 @@
 package org.example;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 @XmlRootElement(name = "root")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CityStatsApp {
+public class CityStats {
     private static final Map<String, Integer> cityDuplicates = new HashMap<>();
     private static final Map<String, Map<Integer, Integer>> cityBuildingStats = new HashMap<>();
     private List<Item> items;
@@ -61,9 +61,9 @@ public class CityStatsApp {
     private static void analyzeXMLFile(String filePath) {
         try {
             File file = new File(filePath);
-            JAXBContext jaxbContext = JAXBContext.newInstance(CityStatsApp.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(CityStats.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            CityStatsApp cityStatsApp = (CityStatsApp) jaxbUnmarshaller.unmarshal(file);
+            CityStats cityStatsApp = (CityStats) jaxbUnmarshaller.unmarshal(file);
 
             for (Item item : cityStatsApp.getItems()) {
                 String city = item.getCity();
